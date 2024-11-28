@@ -1,6 +1,6 @@
 [package]
 edition = "2021"
-name = "leptos-cloudflare-example"
+name = "leptos-cloudflare-pages"
 version = "0.1.0"
 
 [[bin]]
@@ -19,31 +19,37 @@ lto = true
 strip = true
 
 [dependencies]
-leptos = { version = "0.6", default-features = false, features = ["nightly"] }
-leptos_meta = { version = "0.6", default-features = false, features = [
-  "nightly",
-] }
-leptos_router = { version = "0.6", default-features = false, features = [
-  "nightly",
-] }
+leptos = { version = "0.6" }
+leptos_meta = { version = "0.6" }
+leptos_router = { version = "0.6" }
 axum = { version = "0.7", default-features = false, optional = true, features = [
   "macros",
 ] }
 leptos_axum = { version = "0.6", default-features = false, optional = true }
-worker = { version = "0.0.24", features = ["http"] }
-worker-macros = { version = "0.0.16", features = ["http"] }
+worker = { version = "0.4", features = ["http"] }
+worker-macros = { version = "0.4", features = ["http"] }
 async-trait = "0.1.79"
 wasm-bindgen = "0.2"
-tower = "0.4.13"
+tower = "0.5"
 js-sys = "0.3.69"
+
+### i18n
+leptos-fluent = { version = "0.1", optional = true }
+fluent-templates = "0.11"
 
 [features]
 default = ["ssr"]
-hydrate = ["leptos/hydrate", "leptos_meta/hydrate", "leptos_router/hydrate"]
+hydrate = [
+  "leptos/hydrate",
+  "leptos_meta/hydrate",
+  "leptos_router/hydrate",
+  "leptos-fluent/hydrate",
+]
 ssr = [
   "dep:axum",
   "dep:leptos_axum",
   "leptos/ssr",
   "leptos_meta/ssr",
   "leptos_router/ssr",
+  "leptos-fluent/ssr",
 ]

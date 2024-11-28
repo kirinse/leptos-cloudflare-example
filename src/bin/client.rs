@@ -1,5 +1,5 @@
 use leptos::mount_to_body;
-use leptos_cloudflare_example::app::HelloWorld;
+use leptos_cloudflare_pages::app::HelloWorld;
 use wasm_bindgen::prelude::wasm_bindgen;
 
 #[wasm_bindgen]

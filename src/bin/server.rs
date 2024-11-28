@@ -4,7 +4,7 @@ use leptos_axum::{generate_route_list, LeptosRoutes};
 use tower::Service;
 use worker::*;
 
-use leptos_cloudflare_example::app::{GenerateRandomNumber, HelloWorld};
+use leptos_cloudflare_pages::app::{GenerateRandomNumber, HelloWorld};
 
 #[event(fetch)]
 pub async fn fetch(
