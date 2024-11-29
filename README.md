@@ -122,7 +122,7 @@ Cloudflare pages also supports local development via wrangler.
 ```sh
 wrangler pages dev site
 tailwindcss -i ./style/index.css -o ./site/pkg/index.css --watch
-while sleep 1; do ls src/*.rs | entr -r './build.sh'; done
+# while sleep 1; do ls src/*.rs | entr -r './build.sh'; done
 cargo watch -- ./build.sh
 ```
 
@@ -137,3 +137,29 @@ I've provided a flake.nix which has all the required dependencies to get started
 * wrangler
 * wasm-bindgen-cli
 * entr
+
+### Roadmap
+
+- [x] router
+- [ ] fetch
+- [ ] bearer token based authentication
+  - [ ] keycloak?
+  - [ ] loco?
+- [ ] pages
+  - [ ] /
+  - [ ] /subtitles
+  - [ ] /movies
+  - [ ] /series
+  - [ ] /schedule
+  - [ ] /search/4k
+  - [ ] /forum
+  - [ ] /upload
+  - [ ] /teams
+  - [ ] /setting
+  - [ ] auth pages
+    - [ ] login
+    - [ ] signup
+    - [ ] forgot-password
+    - [ ] otp
+
+...

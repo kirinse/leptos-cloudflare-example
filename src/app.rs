@@ -1,7 +1,10 @@
 use fluent_templates::{once_cell::sync::Lazy, static_loader, StaticLoader};
 use leptos::*;
-use leptos_fluent::{leptos_fluent, move_tr};
-use leptos_meta::{provide_meta_context, Link, Stylesheet};
+use leptos_fluent::{leptos_fluent, tr};
+use leptos_meta::{provide_meta_context, Link, Stylesheet, Title};
+use leptos_router::{Router, Routes, Route};
+
+use crate::pages::{home::Home, errors::NotFound, auth::*, RootLayout};
 
 #[server]
 pub async fn generate_random_number() -> Result<f64, ServerFnError> {
@@ -17,7 +20,7 @@ static_loader! {
 pub static COMPOUND: &[&Lazy<StaticLoader>] = &[&TRANSLATIONS, &TRANSLATIONS];
 
 #[component]
-pub fn hello_world() -> impl IntoView {
+pub fn App() -> impl IntoView {
     leptos_fluent! {
         translations: [TRANSLATIONS, TRANSLATIONS] + COMPOUND,
         locales: "./locales",
@@ -43,23 +46,26 @@ pub fn hello_world() -> impl IntoView {
         initial_language_from_navigator_to_localstorage: true,
         initial_language_from_accept_language_header: true,
     };
+    let formatter = |text: String| format!("{text} — {}", tr!("site-name"));
 
     provide_meta_context();
 
-    let get_random = create_server_action::<GenerateRandomNumber>();
-    let on_click = move |_| get_random.dispatch(GenerateRandomNumber {});
-
     view! {
         <Link rel="icon" href="/pkg/favicon.ico"/>
-        <Stylesheet id="" href="/pkg/index.css"/>
+        <Stylesheet id="stylesheet" href="/pkg/index.css"/>
+        <Title formatter/>
 
-        <h1 class="text-xl font-medium mb-3">"Hello, World! " {move || get_random.value()}</h1>
-        {move_tr!("select-a-language")}
-        <button
-            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 w-full"
-            on:click=on_click
-        >
-            "Get me a random number"
-        </button>
+        <Router fallback=|| view! {<NotFound/>}>
+            <Routes>
+                <Route path="/" view=RootLayout>
+                    <Route path="" view=Home/>
+                </Route>
+                <Route path="auth" view=RootLayout>
+                    <Route path="/login" view=Login/>
+                    <Route path="/signup" view=Signup/>
+                </Route>
+                // <Route path="/*" view=NotFound/>
+            </Routes>
+        </Router>
     }
 }

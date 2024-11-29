@@ -4,7 +4,7 @@ use leptos_axum::{generate_route_list, LeptosRoutes};
 use tower::Service;
 use worker::*;
 
-use leptos_cloudflare_pages::app::{GenerateRandomNumber, HelloWorld};
+use leptos_cloudflare_pages::app::{App, GenerateRandomNumber};
 
 #[event(fetch)]
 pub async fn fetch(
@@ -21,7 +21,7 @@ pub async fn fetch(
     register_explicit::<GenerateRandomNumber>();
 
     let mut router = Router::new()
-        .leptos_routes(&leptos_options, generate_route_list(HelloWorld), HelloWorld)
+        .leptos_routes(&leptos_options, generate_route_list(App), App)
         .with_state(leptos_options);
 
     Ok(router.call(req).await?)

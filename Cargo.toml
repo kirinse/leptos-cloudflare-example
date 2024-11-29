@@ -25,7 +25,9 @@ leptos_router = { version = "0.6" }
 axum = { version = "0.7", default-features = false, optional = true, features = [
   "macros",
 ] }
-leptos_axum = { version = "0.6", default-features = false, optional = true }
+leptos_axum = { version = "0.6", default-features = false, features = [
+  "wasm",
+], optional = true }
 worker = { version = "0.4", features = ["http"] }
 worker-macros = { version = "0.4", features = ["http"] }
 async-trait = "0.1.79"
@@ -33,18 +35,34 @@ wasm-bindgen = "0.2"
 tower = "0.5"
 js-sys = "0.3.69"
 
+leptos-use = { version = "0.13" }
+codee = "0.2"
+
+radix-leptos-avatar = "0.0.2"
+radix-leptos-label = "0.0.2"
+
+# radix-leptos-slot = "0.0.2"
+icondata_core = "*"
+
+
+tailwind_fuse = { git = "https://github.com/kirinse/tailwind-fuse", features = [
+  "variant",
+] }
+
 ### i18n
 leptos-fluent = { version = "0.1", optional = true }
 fluent-templates = "0.11"
 
 [features]
 default = ["ssr"]
+
 hydrate = [
   "leptos/hydrate",
   "leptos_meta/hydrate",
   "leptos_router/hydrate",
   "leptos-fluent/hydrate",
 ]
+
 ssr = [
   "dep:axum",
   "dep:leptos_axum",
@@ -52,4 +70,5 @@ ssr = [
   "leptos_meta/ssr",
   "leptos_router/ssr",
   "leptos-fluent/ssr",
+  "leptos-use/ssr",
 ]
