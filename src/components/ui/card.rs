@@ -1,5 +1,3 @@
-#![allow(unused)]
-
 use leptos::{
     component, create_memo,
     html::{Div, H3, P},
@@ -10,7 +8,9 @@ use tailwind_fuse::tw_merge;
 #[component]
 pub fn Card(
     #[prop(into, optional)] class: MaybeProp<TextProp>,
-    #[prop(optional)] node_ref: NodeRef<Div>,
+    #[allow(unused)]
+    #[prop(optional)]
+    node_ref: NodeRef<Div>,
     #[prop(attrs)] attrs: Vec<(&'static str, Attribute)>,
     children: Children,
 ) -> impl IntoView {
@@ -31,7 +31,9 @@ pub fn Card(
 #[component]
 pub fn CardHeader(
     #[prop(into, optional)] class: MaybeProp<TextProp>,
-    #[prop(optional)] node_ref: NodeRef<Div>,
+    #[allow(unused)]
+    #[prop(optional)]
+    node_ref: NodeRef<Div>,
     #[prop(attrs)] attrs: Vec<(&'static str, Attribute)>,
     children: Children,
 ) -> impl IntoView {
@@ -52,7 +54,9 @@ pub fn CardHeader(
 #[component]
 pub fn CardTitle(
     #[prop(into, optional)] class: MaybeProp<TextProp>,
-    #[prop(optional)] node_ref: NodeRef<H3>,
+    #[allow(unused)]
+    #[prop(optional)]
+    node_ref: NodeRef<H3>,
     #[prop(attrs)] attrs: Vec<(&'static str, Attribute)>,
     children: Children,
 ) -> impl IntoView {
@@ -73,7 +77,9 @@ pub fn CardTitle(
 #[component]
 pub fn CardDescription(
     #[prop(into, optional)] class: MaybeProp<TextProp>,
-    #[prop(optional)] node_ref: NodeRef<P>,
+    #[allow(unused)]
+    #[prop(optional)]
+    node_ref: NodeRef<P>,
     #[prop(attrs)] attrs: Vec<(&'static str, Attribute)>,
     children: Children,
 ) -> impl IntoView {
@@ -93,7 +99,9 @@ pub fn CardDescription(
 #[component]
 pub fn CardContent(
     #[prop(into, optional)] class: MaybeProp<TextProp>,
-    #[prop(optional)] node_ref: NodeRef<Div>,
+    #[allow(unused)]
+    #[prop(optional)]
+    node_ref: NodeRef<Div>,
     #[prop(attrs)] attrs: Vec<(&'static str, Attribute)>,
     children: Children,
 ) -> impl IntoView {
@@ -109,7 +117,9 @@ pub fn CardContent(
 #[component]
 pub fn CardFooter(
     #[prop(into, optional)] class: MaybeProp<TextProp>,
-    #[prop(optional)] node_ref: NodeRef<Div>,
+    #[allow(unused)]
+    #[prop(optional)]
+    node_ref: NodeRef<Div>,
     #[prop(attrs)] attrs: Vec<(&'static str, Attribute)>,
     children: Children,
 ) -> impl IntoView {

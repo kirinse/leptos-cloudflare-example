@@ -1,7 +1,6 @@
 use crate::app::GenerateRandomNumber;
 use crate::components::ui::{Avatar, Button, ButtonVariant};
 use crate::components::{
-    // counter_btn::Button,
     icon::Icon,
     icons,
     ui::{Badge, BadgeVariant, H1},

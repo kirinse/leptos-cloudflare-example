@@ -36,10 +36,18 @@ tower = "0.5"
 js-sys = "0.3.69"
 
 leptos-use = { version = "0.13" }
-codee = "0.2"
+codee = { version = "0.2", features = ["json_serde"] }
+serde = { version = "1.0", features = ["derive"] }
+gloo-net = { version = "0.6", features = ["http"] }
+reqwest = { version = "0.12", features = ["json"] }
+console_log = "1.0"
+console_error_panic_hook = "0.1"
+log = "0.4"
+simple_logger = "5"
 
 radix-leptos-avatar = "0.0.2"
 radix-leptos-label = "0.0.2"
+radix-leptos-separator = "0.0.2"
 
 # radix-leptos-slot = "0.0.2"
 icondata_core = "*"

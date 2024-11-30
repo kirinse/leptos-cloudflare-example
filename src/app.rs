@@ -2,9 +2,13 @@ use fluent_templates::{once_cell::sync::Lazy, static_loader, StaticLoader};
 use leptos::*;
 use leptos_fluent::{leptos_fluent, tr};
 use leptos_meta::{provide_meta_context, Link, Stylesheet, Title};
-use leptos_router::{Router, Routes, Route};
+use leptos_router::{Route, Router, Routes};
 
-use crate::pages::{home::Home, errors::NotFound, auth::*, RootLayout};
+use crate::{
+    pages::{auth::*, errors::NotFound, home::Home, stories::Stories, Full, Shell},
+    providers::ConfigProvider,
+};
+// use crate::components::Fallback;
 
 #[server]
 pub async fn generate_random_number() -> Result<f64, ServerFnError> {
@@ -55,17 +59,20 @@ pub fn App() -> impl IntoView {
         <Stylesheet id="stylesheet" href="/pkg/index.css"/>
         <Title formatter/>
 
-        <Router fallback=|| view! {<NotFound/>}>
-            <Routes>
-                <Route path="/" view=RootLayout>
-                    <Route path="" view=Home/>
-                </Route>
-                <Route path="auth" view=RootLayout>
-                    <Route path="/login" view=Login/>
-                    <Route path="/signup" view=Signup/>
-                </Route>
+        <ConfigProvider>
+            <Router fallback=|| view! { <NotFound/> }>
+                <Routes>
+                    <Route path="/" view=Shell>
+                        <Route path="" view=Home/>
+                        <Route path="stories/:stories?" view=Stories/>
+                    </Route>
+                    <Route path="auth" view=Full>
+                        <Route path="/login" view=Login/>
+                        <Route path="/signup" view=Signup/>
+                    </Route>
                 // <Route path="/*" view=NotFound/>
-            </Routes>
-        </Router>
+                </Routes>
+            </Router>
+        </ConfigProvider>
     }
 }

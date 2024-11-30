@@ -1,7 +1,7 @@
 pub mod auth;
 pub mod errors;
 pub mod home;
+pub mod stories;
 
-mod root_layout;
-
-pub use root_layout::*;
+mod shell;
+pub use shell::*;

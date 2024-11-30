@@ -11,3 +11,5 @@ not_found_description = It seems like the page you're looking for
  does not exist or might have been removed.
 
 home = Home
+login = Login
+signup = Signup

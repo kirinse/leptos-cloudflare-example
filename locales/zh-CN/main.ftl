@@ -8,3 +8,5 @@ go_back = 返回
 not_found_title = Oops! 页面未找到!
 not_found_description = 你要找的页面似乎不存在或可能已被删除。
 home = 首页
+login = 登录
+signup = 注册
